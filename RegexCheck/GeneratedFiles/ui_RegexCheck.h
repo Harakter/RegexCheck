@@ -75,9 +75,9 @@ public:
     void retranslateUi(QMainWindow *RegexCheckClass)
     {
         RegexCheckClass->setWindowTitle(QApplication::translate("RegexCheckClass", "Regex Check", nullptr));
-        label->setText(QApplication::translate("RegexCheckClass", "\320\222\321\213\321\200\320\260\320\266\320\265\320\275\320\270\320\265: ", nullptr));
-        label_2->setText(QApplication::translate("RegexCheckClass", "\320\240\320\265\320\267\321\203\320\273\321\214\321\202\320\260\321\202:", nullptr));
-        label_3->setText(QApplication::translate("RegexCheckClass", "\320\242\320\265\320\272\321\201\321\202:", nullptr));
+        label->setText(QApplication::translate("RegexCheckClass", "Expression:", nullptr));
+        label_2->setText(QApplication::translate("RegexCheckClass", "Matches:", nullptr));
+        label_3->setText(QApplication::translate("RegexCheckClass", "Text:", nullptr));
     } // retranslateUi
 
 };

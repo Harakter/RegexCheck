@@ -34,7 +34,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Выражение: </string>
+     <string>Expression:</string>
     </property>
    </widget>
    <widget class="QListView" name="resultList">
@@ -60,7 +60,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Результат:</string>
+     <string>Matches:</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="inputText">
@@ -83,7 +83,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Текст:</string>
+     <string>Text:</string>
     </property>
    </widget>
   </widget>
