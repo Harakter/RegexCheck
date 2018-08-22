@@ -11,7 +11,7 @@ public:
 	RegexCheck(QWidget *parent = Q_NULLPTR);
 
 public slots:
-	void performSearch();
+	void performSearch(); 
 
 private:
 	Ui::RegexCheckClass ui;
