@@ -1,5 +1,5 @@
 #include "RegexCheck.h"
-#include <regex>
+#include <QException>
 #include <QStringListModel>
 #include <QLayout>
 
@@ -11,7 +11,6 @@ RegexCheck::RegexCheck(QWidget *parent)
 	/*
 		Disable resize for main window
 	*/
-	ui.statusBar->setSizeGripEnabled(false);
 	this->setFixedSize(this->size());
 
 	/*
@@ -36,48 +35,47 @@ RegexCheck::RegexCheck(QWidget *parent)
 
 void RegexCheck::performSearch()
 {
-	/*
-		Get std string from edit text element
-	*/
-	std::string reg_str		=	ui.inputRegex->text().toStdString();
-	std::string srch_str	=	ui.inputText->toPlainText().toStdString();
-	
-	if (reg_str.empty() || // Check if strings are empty
-		srch_str.empty())
+	QString reg_str = ui.inputRegex->text();
+	QString srch_str = ui.inputText->toPlainText();
+
+	if (reg_str.isEmpty() || // Check if strings are empty
+		srch_str.isEmpty())
 	{
 		return;
 	}
 
-	std::regex testing;
-
-	QStringList		temp_list; // Creating a QStringList to fill it with regex_search results
-	QStringListModel *mdl = new QStringListModel; // Creating a model to use it with QListView
+	QRegularExpression	testing;
+	QStringList			temp_list;						// Creating a QStringList to fill it with regex_search results
+	QStringListModel	*mdl = new QStringListModel;	// Creating a model to use it with QListView
 
 	try
 	{
-		testing.assign(reg_str); // Check if regex string is wrong
+		testing.setPattern(reg_str);
 	}
-	catch (std::exception ex)
+	catch (QException ex)
 	{
 		mdl->setStringList(temp_list);
 
 		ui.resultList->setModel(mdl); // Setting empty model
 		return;
 	}
-	
+
 	/*
-		Creating a sregex_iterator to find all matches in text
+		Creating a QRegularExpressionMatchIterator to find all matches in text
 	*/
-	std::sregex_iterator begin(srch_str.begin(), srch_str.end(), testing);
-	std::sregex_iterator end;
-	
+	QRegularExpressionMatchIterator qrem(testing.globalMatch(srch_str));
+
 	/*
 		Adding all matches to QStringList
 	*/
 
-	for (; begin != end; ++begin)
+	while (qrem.hasNext())
 	{
-		temp_list << QString::fromStdString(((*begin).str()));
+		QRegularExpressionMatch mtch = qrem.next();
+		if (mtch.hasMatch())
+		{
+			temp_list << mtch.captured();
+		}
 	}
 
 	mdl->setStringList(temp_list); // Converting QStringList to model

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'RegexCheck.ui'
 **
-** Created by: Qt User Interface Compiler version 5.10.1
+** Created by: Qt User Interface Compiler version 5.11.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,15 +10,11 @@
 #define UI_REGEXCHECK_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
@@ -34,7 +30,6 @@ public:
     QLabel *label_2;
     QTextEdit *inputText;
     QLabel *label_3;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *RegexCheckClass)
     {
@@ -51,21 +46,18 @@ public:
         label->setGeometry(QRect(10, 10, 71, 16));
         resultList = new QListView(centralWidget);
         resultList->setObjectName(QStringLiteral("resultList"));
-        resultList->setGeometry(QRect(320, 60, 261, 231));
+        resultList->setGeometry(QRect(320, 60, 261, 261));
         resultList->setEditTriggers(QAbstractItemView::NoEditTriggers);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(320, 40, 71, 16));
         inputText = new QTextEdit(centralWidget);
         inputText->setObjectName(QStringLiteral("inputText"));
-        inputText->setGeometry(QRect(10, 60, 301, 231));
+        inputText->setGeometry(QRect(10, 60, 301, 261));
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(10, 40, 71, 16));
         RegexCheckClass->setCentralWidget(centralWidget);
-        statusBar = new QStatusBar(RegexCheckClass);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        RegexCheckClass->setStatusBar(statusBar);
 
         retranslateUi(RegexCheckClass);
 

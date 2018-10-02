@@ -43,7 +43,7 @@
       <x>320</x>
       <y>60</y>
       <width>261</width>
-      <height>231</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="editTriggers">
@@ -69,7 +69,7 @@
       <x>10</x>
       <y>60</y>
       <width>301</width>
-      <height>231</height>
+      <height>261</height>
      </rect>
     </property>
    </widget>
@@ -87,7 +87,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
