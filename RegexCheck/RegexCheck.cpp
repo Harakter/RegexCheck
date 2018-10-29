@@ -9,24 +9,19 @@ RegexCheck::RegexCheck(QWidget *parent)
 	ui.setupUi(this);
 
 	/*
-		Disable resize for main window
-	*/
-	this->setFixedSize(this->size());
-
-	/*
 		Connect text changes with slot
 	*/
-	connect(ui.inputRegex
-		,	SIGNAL(textChanged(const QString &))
-		,	this
-		,	SLOT(performSearch())
-		);
-
 	connect(ui.inputText
 		,	SIGNAL(textChanged())
 		,	this
 		,	SLOT(performSearch())
 		);
+
+	connect(ui.inputRegex
+		, SIGNAL(textChanged(QString))
+		, this
+		, SLOT(performSearch())
+	);
 }
 
 /*
@@ -47,12 +42,12 @@ void RegexCheck::performSearch()
 	QRegularExpression	testing;
 	QStringList			temp_list;						// Creating a QStringList to fill it with regex_search results
 	QStringListModel	*mdl = new QStringListModel;	// Creating a model to use it with QListView
-
+	
 	try
 	{
 		testing.setPattern(reg_str);
 	}
-	catch (QException ex)
+	catch (QException &ex)
 	{
 		mdl->setStringList(temp_list);
 
@@ -74,7 +69,7 @@ void RegexCheck::performSearch()
 		QRegularExpressionMatch mtch = qrem.next();
 		if (mtch.hasMatch())
 		{
-			temp_list << mtch.captured();
+			temp_list << QString("\'%1\'").arg(mtch.captured());
 		}
 	}
 
