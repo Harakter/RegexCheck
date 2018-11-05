@@ -1,11 +1,16 @@
 #include "RegexCheck.h"
-#include <QException>
-#include <QStringListModel>
-#include <QLayout>
 
 RegexCheck::RegexCheck(QWidget *parent)
 	: QMainWindow(parent)
 {
+	main_menu = new QMenuBar;
+	QAction* action_save = new QAction;
+	action_save->setText("Save");
+
+	main_menu->addAction(action_save);
+	
+	//static_cast<QGridLayout*>(ui.centralWidget->layout())->addWidget(main_menu);
+
 	ui.setupUi(this);
 
 	/*
@@ -75,4 +80,33 @@ void RegexCheck::performSearch()
 
 	mdl->setStringList(temp_list); // Converting QStringList to model
 	ui.resultList->setModel(mdl);  // Setting model from QStringListModel to QListView
+}
+
+void RegexCheck::export_file()
+{
+	QString filename = QFileDialog::getSaveFileName();
+
+	QFile* file = new QFile(filename);
+	QTextStream str(file);
+	if (!file->open(QFile::WriteOnly | QFile::Text))
+	{
+		QMessageBox::critical(this, "Error", file->errorString());
+	}
+	
+	QStringList output = static_cast<QStringListModel*>(ui.resultList->model())->stringList();
+
+	int cnt = 0;
+
+	foreach(const QString& str_itr, output)
+	{
+		str << str_itr << '\n';
+		++cnt;
+	}
+
+	file->close();
+}
+
+void RegexCheck::on_actionSave_triggered()
+{
+	export_file();
 }
