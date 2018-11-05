@@ -95,12 +95,9 @@ void RegexCheck::export_file()
 	
 	QStringList output = static_cast<QStringListModel*>(ui.resultList->model())->stringList();
 
-	int cnt = 0;
-
 	foreach(const QString& str_itr, output)
 	{
 		str << str_itr << '\n';
-		++cnt;
 	}
 
 	file->close();
